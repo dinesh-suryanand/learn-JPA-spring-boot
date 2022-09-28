@@ -1,9 +1,6 @@
 package com.dinesh.springdatajpa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Generated;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "tbl_student",
         uniqueConstraints = @UniqueConstraint(
                 name="emailid_unique",
@@ -32,12 +30,11 @@ public class Student {
     private long studentId;
     private String firstName;
     private String lastName;
-    private String guardianName;
-    private String guardianEmail;
-    private String guardianMobile;
     @Column(name = "student_email",
             nullable = false
     )
     private String emailId;
+    @Embedded
+    private Guardian guardian;
 
 }
